@@ -1,0 +1,26 @@
+"DOIs": [
+    "p000001": {
+        "doi": "10.5879/BILS/p000001",
+        "resources": [
+            "http://webdav.swestore.se/snic/bils/pub/procsdata/",
+        ]
+    },
+    "ga00001": {
+        "doi": "10.5879/BILS/ga00001",
+        "resources": [
+            "http://srm.swegrid.se/snic/bils/pub/ga00001/",
+        ]
+    },
+    "g000001": {
+        "doi": "10.5879/BILS/g000001",
+        "resources": [
+            "https://export.uppmax.uu.se/b2011203/pea_gwas/",
+        ]
+    },
+    "g000002": {
+        "doi": "10.17044/BILS/g000002",
+        "resources": [
+            "Please contact info@bils.se in order to apply for access.",
+        ]
+    },
+]
