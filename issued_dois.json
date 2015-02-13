@@ -19,4 +19,9 @@
             "Please contact info@bils.se in order to apply for access.",
         ]
     },
+    "10.17044/BILS/p000002": {
+        "resources": [
+            "http://srm.swegrid.se/snic/bils/pub/ADH5_data/",
+        ]
+    },
 ]
