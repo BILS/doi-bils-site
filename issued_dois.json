@@ -1,27 +1,29 @@
-"DOIs": [
-    "10.5879/BILS/p000001": {
-        "resources": [
-            "http://webdav.swestore.se/snic/bils/pub/procsdata/",
-        ]
-    },
-    "10.5879/BILS/ga00001": {
-        "resources": [
-            "http://srm.swegrid.se/snic/bils/pub/ga00001/",
-        ]
-    },
-    "10.5879/BILS/g000001": {
-        "resources": [
-            "https://export.uppmax.uu.se/b2011203/pea_gwas/",
-        ]
-    },
-    "10.17044/BILS/g000002": {
-        "resources": [
-            "Please contact info@bils.se in order to apply for access.",
-        ]
-    },
-    "10.17044/BILS/p000002": {
-        "resources": [
-            "http://srm.swegrid.se/snic/bils/pub/ADH5_data/",
-        ]
-    },
-]
+{
+    "DOIs": {
+        "10.5879/BILS/p000001": {
+            "resources": [
+                "http://webdav.swestore.se/snic/bils/pub/procsdata/",
+            ]
+        },
+        "10.5879/BILS/ga00001": {
+            "resources": [
+                "http://srm.swegrid.se/snic/bils/pub/ga00001/",
+            ]
+        },
+        "10.5879/BILS/g000001": {
+            "resources": [
+                "https://export.uppmax.uu.se/b2011203/pea_gwas/",
+            ]
+        },
+        "10.17044/BILS/g000002": {
+            "resources": [
+                "Please contact info@bils.se in order to apply for access.",
+            ]
+        },
+        "10.17044/BILS/p000002": {
+            "resources": [
+                "http://srm.swegrid.se/snic/bils/pub/ADH5_data/",
+            ]
+        },
+    }
+}
