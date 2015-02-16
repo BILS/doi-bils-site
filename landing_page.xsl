@@ -97,13 +97,28 @@ The d: prefix is then used in the select attributes of the xsl statements
                     <xsl:attribute name="href">
                       http://doi.org/<xsl:value-of select="d:resource/d:identifier"/>
                     </xsl:attribute> 
-                    <xsl:value-of select="d:resource/d:identifier"/>
+                    doi:<xsl:value-of select="d:resource/d:identifier"/>
                   </xsl:element>
                 </td>
               </tr>
               <tr>
                 <td>Reference</td>
-                <td></td>
+                <td>
+                  <xsl:if test="d:resource/fullCitation">
+                    <xsl:value-of select="d:resource/fullCitation" />
+                    <!-- NOTE! This bit is parsing parts of the xml that was added in memory
+                    in the PHP code in index.php. It seems the newly added elements 
+                    (data_links and data_link) are not considered to belong to the same
+                    namespace as the parent nodes (notice the absence of the d: prefix in the
+                    select statement above). -->
+                    <xsl:element name="a">
+                      <xsl:attribute name="href">
+                        http://doi.org/<xsl:value-of select="d:resource/fullCitation/@citation_doi"/>
+                      </xsl:attribute> 
+                      doi:<xsl:value-of select="d:resource/fullCitation/@citation_doi"/>
+                    </xsl:element>
+                  </xsl:if>
+                </td>
               </tr>
 
 
