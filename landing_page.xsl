@@ -110,6 +110,30 @@ The d: prefix is then used in the select attributes of the xsl statements
             </table>
           </div>
         </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Download</h3>
+          </div>
+          <div class="panel-body">
+            <!-- <xsl:for-each select="d:resource/d:data_links/d:data_link"> -->
+            <xsl:for-each select="d:resource/data_links/data_link">
+            <!-- NOTE! This bit is parsing parts of the xml that was added in memory
+            in the PHP code in index.php. It seems the newly added elements 
+            (data_links and data_link) are not considered to belong to the same
+            namespace as the parent nodes (notice the absence of the d: prefix in the
+            select statement above). -->
+              <xsl:element name="a">
+                <xsl:attribute name="href">
+                  <xsl:value-of select="."/>
+                </xsl:attribute>
+                <xsl:value-of select="."/>
+              </xsl:element>
+              <br/>
+            </xsl:for-each>
+
+          </div>
+        </div>
+
       </div>
     </body>
   </html>
