@@ -38,8 +38,12 @@
 
 		// Load XML file
 		$xml = new DOMDocument;
-		$xml->load($xml_uri);
+		$load_ok = $xml->load($xml_uri);
 
+		if (!$load_ok) {
+			echo "<br/>No such doi found: $doi";
+			exit();
+		}
 		// // read resource info from issued_dois.json and insert in xml
 	    $json_data = file_get_contents($doi_json_file);
 	    $data = json_decode($json_data);
