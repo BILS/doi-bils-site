@@ -27,10 +27,14 @@
 
 	} else { // Produce the landing page for the specified DOI
 		$doi = $_GET['doi'];
-		
+
 		// URI for the specified DOI
 		$uri_prefix = "http://data.datacite.org/application/x-datacite+xml";
-		$xml_uri = "$uri_prefix/$doi";
+		$xml_uri = "$uri_prefix/" . urlencode($doi);
+			// get local file for testing/implementation
+		// $split = preg_split('/\//', $doi);
+		// $xml_uri = $split[2] . '.xml';
+
 
 		// Load XML file
 		$xml = new DOMDocument;
@@ -63,29 +67,48 @@
 	    // same namespace as the parent element.
 	    // This affects how the xsl select statements should be specified
 
-	    // Leftover stuff from attempts to fix strange namespace thingy
-	    // echo "<pre>";
-	    // var_dump($top_element);
-	    // echo $xml->savexml();
-	    // echo "</pre>";
 
+		// Find references to publications and get doi metadata for these
+		// and insert in xml
+
+		// Get the refence doi from the xml
+	    $ref_element = $top_element->getElementsByTagName("relatedIdentifier")->item(0);
+	    // This gets the first relatedIdentifier and ignores the rest.
+	    // Should possibly be improved to handle more than one relatedIdentifier
+	    // and different types as well.
+	    // NB! The xsl would also have to be changed for that to work properly
+	    if (isset($ref_element)) {
+		    $ref_doi = $ref_element->nodeValue;
+		    // print_r($ref_doi);
+
+			// Fetch the metadata for the reference from crossref.org
+		    $crossref_uri = "http://search.crossref.org/dois?q=" . urlencode($ref_doi);
+		    $ref_json_data = file_get_contents($crossref_uri);
+		    $ref_data = json_decode($ref_json_data);
+
+		    $ref =  $ref_data[0]->{'fullCitation'} ;
+		    	// remove any html formating in the output
+		    $ref = preg_replace('/<i>/', '', $ref);
+		    $ref = preg_replace('/<\/i>/', '', $ref);
+
+			// Add appropriate bits to the xml
+		    $full_citation_element = $xml->createElement( "fullCitation", $ref );
+		    $ref_attr = $xml->createAttribute("citation_doi");
+		    $ref_attr->value = $ref_doi;
+		    $full_citation_element->appendChild($ref_attr);
+		    $top_element->appendChild($full_citation_element);
+	    }
+
+		// Set XSLT transform stylesheet file
+		$xslt_file = "landing_page.xsl";
+
+	    // Leftover stuff from attempts to fix strange namespace thingy
 
 	 //    // ugly fix to get the dom to update(?) for the transform to work later on
 	 //    // there must be someway to fix this
 	    // $xml->save($tmp_file_name);
 		// $xml->load($tmp_file_name);
 		// unlink($tmp_file_name);
-
-	    // echo "<pre>";
-	    // echo $xml->saveXML();
-	    // echo "</pre>";
-
-		// Find references to publications and get doi metadata for these
-		// and insert in xml
-		// ==== MORE WORK NEEDED HERE! ====
-
-		// Set XSLT transform stylesheet file
-		$xslt_file = "landing_page.xsl";
 	}
 
 	// Load XSL file
