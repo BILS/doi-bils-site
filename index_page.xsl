@@ -48,7 +48,12 @@
 		          			<xsl:for-each select="response/result/doc">
 			          			<tr>
 			          				<td>
-			          					<xsl:value-of select="str[@name='doi']"/>
+			          					<xsl:element name="a">
+                      						<xsl:attribute name="href">
+			          							index.php?doi=<xsl:value-of select="str[@name='doi']"/>
+			          						</xsl:attribute>
+			          						<xsl:value-of select="str[@name='doi']"/>
+			          					</xsl:element>
 			          				</td>
 			          				<td>
 										<xsl:for-each select="arr[@name='creator']/str">
@@ -59,14 +64,9 @@
 
 			          				</td>
 			          				<td>
-			          					<xsl:element name="a">
-                      						<xsl:attribute name="href">
-			          							index.php?doi=<xsl:value-of select="str[@name='doi']"/>
-			          						</xsl:attribute>
-			          						<xsl:for-each select="arr[@name='title']/str">
-			          							<xsl:value-of select="." /><br/>
-			          						</xsl:for-each>
-			          					</xsl:element>
+		          						<xsl:for-each select="arr[@name='title']/str">
+		          							<xsl:value-of select="." /><br/>
+		          						</xsl:for-each>
 			          				</td>
 			          				<td>
 			          					<xsl:value-of select="str[@name='publicationYear']"/>
