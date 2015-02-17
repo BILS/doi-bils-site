@@ -49,28 +49,35 @@
 	    $json_data = file_get_contents($doi_json_file);
 	    $data = json_decode($json_data);
 
-	    $data_link_arr = $data->{'DOIs'}->{$doi}->{'data_links'};
-
+	    // Get the resource DOM element from the xml
 	    $top_element = $xml->getElementsByTagName("resource")->item(0);
-	    $data_links_element = $xml->createElement( "data_links" );
-
-	    // Leftover stuff from attempts to fix strange namespace thingy
-	    // $data_links_element->setAttribute("xmlns", "http://datacite.org/schema/kernel-3");
-
-	    $top_element->appendChild($data_links_element);
 	    
-	    // Leftover stuff from attempts to fix strange namespace thingy
-	    // $ns_atr = $top_element->getAttributeNode ( "xmlns" );
-	    // var_dump($ns_atr);
-	    
-	    foreach ($data_link_arr as $link) {
-	    	$link_element = $xml->createElement( "data_link", $link );
-	    	$data_links_element->appendChild($link_element);
-	    	
+	    if (isset($data->{'DOIs'}->{$doi})) {
+	    	// echo "Found link for $doi";
+		    $data_link_arr = $data->{'DOIs'}->{$doi}->{'data_links'};
+
+		    $data_links_element = $xml->createElement( "data_links" );
+
+		    // Leftover stuff from attempts to fix strange namespace thingy
+		    // $data_links_element->setAttribute("xmlns", "http://datacite.org/schema/kernel-3");
+
+		    $top_element->appendChild($data_links_element);
+		    
+		    // Leftover stuff from attempts to fix strange namespace thingy
+		    // $ns_atr = $top_element->getAttributeNode ( "xmlns" );
+		    // var_dump($ns_atr);
+		    
+		    foreach ($data_link_arr as $link) {
+		    	$link_element = $xml->createElement( "data_link", $link );
+		    	$data_links_element->appendChild($link_element);
+		    	
+		    }
+		    // NB! The newly added elements don't seem to be considered to belong to the 
+		    // same namespace as the parent element.
+		    // This affects how the xsl select statements should be specified
 	    }
-	    // NB! The newly added elements don't seem to be considered to belong to the 
-	    // same namespace as the parent element.
-	    // This affects how the xsl select statements should be specified
+
+
 
 
 		// Find references to publications and get doi metadata for these
