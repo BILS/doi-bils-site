@@ -29,7 +29,7 @@ The d: prefix is then used in the select attributes of the xsl statements
         <div class="page-header">
           <h3>doi:<xsl:value-of select="d:resource/d:identifier"/></h3>
         </div>
-        <div class="panel panel-default">
+        <div class="panel panel-success">
         <div class="panel-heading">
           <h3 class="panel-title">Overview</h3>
         </div>
@@ -125,7 +125,7 @@ The d: prefix is then used in the select attributes of the xsl statements
             </table>
           </div>
         </div>
-        <div class="panel panel-default">
+        <div class="panel panel-success">
           <div class="panel-heading">
             <h3 class="panel-title">Download</h3>
           </div>
