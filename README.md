@@ -20,7 +20,7 @@ This is the only file that has to updated when new DOIs are issued. For each DOI
 
 	{
 	    "DOIs": {
-	        "10.17044/BILS/nnnnnnn": {
+	        "10.17044/BILS/Xnnnnnnn": {
 	            "data_links": [
 	                "http://path/to/data/set"
 	            ]
