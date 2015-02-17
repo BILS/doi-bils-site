@@ -27,6 +27,7 @@
 
 	} else { // Produce the landing page for the specified DOI
 		$doi = $_GET['doi'];
+		$doi = strtoupper($doi); //make it uppercase to work with the entries in the issued_dois.json file
 
 		// URI for the specified DOI
 		$uri_prefix = "http://data.datacite.org/application/x-datacite+xml";
