@@ -1,4 +1,8 @@
 <?php
+	// Debugging stuff
+	ini_set('display_errors', 'On');
+	error_reporting(E_ALL | E_STRICT);
+
 	// In case a tmp file is needed 
 	// Leftover stuff from attempts to fix strange namespace thingy
 	// $date = new DateTime();
