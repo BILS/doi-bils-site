@@ -10,7 +10,11 @@
 	// $tmp_file_name = "tmp_$ts.xml";
 
 	// initialize some variables
-	$doi_json_file = "issued_dois.json"; // the issued dois json file name
+	
+	// the issued dois json file name 
+	// NB! This file is not part of this git repo. Must be checked out from a separate git repo
+	$doi_json_file = "data/issued_dois.json"; 
+
 	$xslt_file = ""; // the stylesheet file to use for the xslt transform
 	$xml = ""; // the xml DOMDocument to transform
 
