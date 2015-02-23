@@ -95,7 +95,7 @@
 	    // and different types as well.
 	    // NB! The xsl would also have to be changed for that to work properly
 	    if (isset($ref_element)) {
-		    $ref_doi = $ref_element->nodeValue;
+		    $ref_doi = trim($ref_element->nodeValue);
 		    // print_r($ref_doi);
 
 			// Fetch the metadata for the reference from crossref.org
