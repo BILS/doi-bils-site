@@ -27,6 +27,10 @@
 						repository is available.
 					</p>
 					<p>
+						If you need a permanent identifier for a data set, please contact 
+						<a href="http://bils.se/resources/supportform/index.php">BILS Support</a>.
+					</p>
+					<p>
 						<small><em><a href="http://bils.se">BILS</a> (Bioinformatics Infrastructure for Life Sciences) is a distributed national 
 						research infrastructure supported by the <a href="http://www.vr.se">Swedish Research Council (Vetenskapsrådet)</a> 
 						providing bioinformatics support to life science researchers in Sweden.</em></small>
