@@ -16,7 +16,7 @@
 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css" />
 			<style type="text/css">
 				table {
-				   font-size: 15px !important;
+				   font-size: 110% !important;
 				}
 			</style>
 		</head>
