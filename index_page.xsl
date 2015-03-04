@@ -53,6 +53,8 @@
 			          		</thead>
 			          		<tbody>
 			          			<xsl:for-each select="response/result/doc">
+			          				<xsl:sort select="str[@name='publicationYear']" />
+			          				<xsl:sort select="str[@name='doi']" />
 				          			<tr>
 				          				<td>
 				          					<xsl:element name="a">
