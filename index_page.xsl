@@ -24,7 +24,7 @@
 			<div class="container">
 				<div class="jumbotron" style="margin-top: 10px">
 				<!-- <div class="well" style="margin-top: 10px"> -->
-	        		<a href="https://bils.se"><img src="https://bils.se/assets/img/bilslogo-small.jpg" /></a>
+	        		<a href="https://bils.se"><img src="https://bils.se/assets/img/bilslogo-small.jpg" title="BILS logo" /></a>
 	        		<!-- <a href="https://bils.se"><img src="bilslogo-small.jpg" /></a> -->
 	        		<h3>BILS DOI repository</h3>
 	        		<p class="text-info">
@@ -37,7 +37,7 @@
 						<a href="http://bils.se/resources/supportform/index.php">BILS Support</a>.</small>
 					</p>
 					<p  class="text-muted">
-						<small><em><a href="http://bils.se">BILS</a> (Bioinformatics Infrastructure for Life Sciences) is a distributed national 
+						<small><em><a href="http://bils.se"><abbr title="Bioinformatics Infrastructure for Life Sciences">BILS</abbr></a> is a distributed national 
 						research infrastructure supported by the <a href="http://www.vr.se">Swedish Research Council (Vetenskapsrådet)</a> 
 						providing bioinformatics support to life science researchers in Sweden.</em></small>
 					</p>
