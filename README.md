@@ -20,7 +20,7 @@ crossref for information.
 
 ## Links to data sets
 This information is taken from a file that must be accessible as **data/issued_dois.json** -
-it is available as a *separate* git repo *doi-bils-site-data*.
+it is available as a *separate* git repo *[doi-bils-site-data](https://github.com/BILS/doi-bils-site-data)*.
 
 ## Server update
 Update scripts are available in a separate _private_ git repo *doi-bils-site-scripts*.
