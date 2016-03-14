@@ -1,7 +1,7 @@
 # doi-bils-site PHP and XSLT code to generate:
 
 1. An index page with a list of the DOIs issued by BILS (SND.BILS)
-2. Alanding page for each issued DOI
+2. A landing page for each issued DOI
 
 Pages are automatically generated from the DOI metadata available at DataCite
 (and crossref for referenced articles), as well as a local json file
