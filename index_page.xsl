@@ -34,10 +34,10 @@
 					</p>
 					<p class="text-info">
 						<small>If you need a permanent identifier for a data set, please contact
-						<a href="http://nbis.se/support/supportform/index.php">NBIS Support</a>.</small>
+						<a href="https://nbis.se/support/supportform/index.php">NBIS Support</a>.</small>
 					</p>
 					<p  class="text-muted">
-						<small><em><a href="http://nbis.se"><abbr title="National Bioinformatics Infrastructure Sweden">NBIS</abbr></a> is a distributed national
+						<small><em><a href="https://nbis.se"><abbr title="National Bioinformatics Infrastructure Sweden">NBIS</abbr></a> is a distributed national
 						research infrastructure supported by the <a href="http://www.vr.se">Swedish Research Council (Vetenskapsrådet)</a>
 						providing bioinformatics support to life science researchers in Sweden.</em></small>
 					</p>
