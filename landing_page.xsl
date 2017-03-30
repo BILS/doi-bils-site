@@ -48,7 +48,17 @@ The d: prefix is then used in the select attributes of the xsl statements
                 <td>Authors</td>
                 <td>
                   <xsl:for-each select="d:resource/d:creators/d:creator">
-                    <xsl:value-of select="d:creatorName"/>
+                    <xsl:if test="d:nameIdentifier">
+                      <xsl:element name="a">
+                        <xsl:attribute name="href">
+                          <xsl:value-of select="d:nameIdentifier/@schemeURI"/>/<xsl:value-of select="d:nameIdentifier"/>
+                        </xsl:attribute>
+                        <xsl:value-of select="d:creatorName"/>
+                      </xsl:element>
+                    </xsl:if>
+                    <xsl:if test="not(d:nameIdentifier)">
+                      <xsl:value-of select="d:creatorName"/>
+                    </xsl:if>
                     <xsl:if test="not(position()=last())">, </xsl:if>
                     <xsl:if test="position()=last()-1">and </xsl:if>
                   </xsl:for-each>
