@@ -35,7 +35,7 @@
 		$doi = strtoupper($doi); //make it uppercase to work with the entries in the issued_dois.json file
 
 		// URI for the specified DOI
-		$uri_prefix = "http://data.datacite.org/application/x-datacite+xml";
+		$uri_prefix = "http://data.datacite.org/application/vnd.datacite.datacite+xml";
 		$xml_uri = "$uri_prefix/" . urlencode($doi);
 			// get local file for testing/implementation
 		// $split = preg_split('/\//', $doi);
