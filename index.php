@@ -20,7 +20,7 @@
 
 	if( ! isset($_GET['doi'])) { // Produce the list of issued DOIs
 		// URI for all SND.BILS issued DOIs
-		$xml_uri = "http://search.datacite.org/api?q=*&fq=datacentre_facet%3A%22SND.BILS+-+Bioinformatics+Infrastructure+for+Life+Sciences%22&fl=doi,creator,title,publisher,publicationYear,datacentre&fq=is_active:true&fq=has_metadata:true&wt=xml&indent=true";
+		$xml_uri = "https://search.datacite.org/api?q=*&fq=datacentre_facet%3A%22SND.BILS+-+Bioinformatics+Infrastructure+for+Life+Sciences%22&fl=doi,creator,title,publisher,publicationYear,datacentre&fq=is_active:true&fq=has_metadata:true&wt=xml&indent=true";
 
 		// Load XML file
 		$xml = new DOMDocument;
@@ -35,7 +35,7 @@
 		$doi = strtoupper($doi); //make it uppercase to work with the entries in the issued_dois.json file
 
 		// URI for the specified DOI
-		$uri_prefix = "http://data.datacite.org/application/vnd.datacite.datacite+xml";
+		$uri_prefix = "https://data.datacite.org/application/vnd.datacite.datacite+xml";
 		$xml_uri = "$uri_prefix/" . urlencode($doi);
 			// get local file for testing/implementation
 		// $split = preg_split('/\//', $doi);
