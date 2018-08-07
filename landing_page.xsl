@@ -151,12 +151,22 @@ The d: prefix is then used in the select attributes of the xsl statements
             (data_links and data_link) are not considered to belong to the same
             namespace as the parent nodes (notice the absence of the d: prefix in the
             select statement above). -->
-              <xsl:element name="a">
-                <xsl:attribute name="href">
+            
+              <!-- test if string contains a url -->
+              <xsl:if test="contains(.,'http')">
+                <xsl:element name="a">
+                  <xsl:attribute name="href">
+                    <xsl:value-of select="."/>
+                  </xsl:attribute>
                   <xsl:value-of select="."/>
-                </xsl:attribute>
+                </xsl:element>
+              </xsl:if>
+              
+              <!-- test if string contains a mail address -->
+              <xsl:if test="contains(.,'@')">
                 <xsl:value-of select="."/>
-              </xsl:element>
+              </xsl:if>
+
               <br/>
             </xsl:for-each>
 
