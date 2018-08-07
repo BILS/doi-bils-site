@@ -121,8 +121,8 @@ The d: prefix is then used in the select attributes of the xsl statements
                   <xsl:if test="d:resource/fullCitation">
                     <xsl:value-of select="d:resource/fullCitation" />
                     <!-- NOTE! This bit is parsing parts of the xml that was added in memory
-                    in the PHP code in index.php. It seems the newly added elements 
-                    (data_links and data_link) are not considered to belong to the same
+                    in the PHP code in index.php. It seems the newly added element 
+                    (fullCitation) is not considered to belong to the same
                     namespace as the parent nodes (notice the absence of the d: prefix in the
                     select statement above). -->
                     <xsl:element name="a">
