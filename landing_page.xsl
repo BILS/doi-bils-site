@@ -164,7 +164,12 @@ The d: prefix is then used in the select attributes of the xsl statements
               
               <!-- test if string contains a mail address -->
               <xsl:if test="contains(.,'@')">
-                <xsl:value-of select="."/>
+                Please contact 
+                <xsl:element name="a">
+                  <xsl:attribute name="href">mailto:<xsl:value-of select="."/>?subject=Requesting access to DOI:<xsl:value-of select="./../../d:identifier"/> dataset</xsl:attribute>
+                  <xsl:value-of select="."/>
+                </xsl:element>
+                in order to apply for access.
               </xsl:if>
 
               <br/>
