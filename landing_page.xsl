@@ -26,10 +26,13 @@ The d: prefix is then used in the select attributes of the xsl statements
            font-size: 105% !important;
         }
       </style>
-
     </head>
     <body>
-      <div class="container">
+      <xsl:element name="div">
+      <xsl:attribute name="itemscope"></xsl:attribute>
+      <xsl:attribute name="itemtype">http://schema.org/Dataset</xsl:attribute>
+      <xsl:attribute name="class">container</xsl:attribute>
+      <xsl:attribute name="itemid">http://doi.org/<xsl:value-of select="d:resource/d:identifier"/></xsl:attribute>
         <div class="page-header">
           <h3>doi:<xsl:value-of select="d:resource/d:identifier"/></h3>
         </div>
@@ -41,7 +44,7 @@ The d: prefix is then used in the select attributes of the xsl statements
             <table class="table table-striped">
               <tr>
                 <td>Title</td>
-                <td><xsl:value-of select="d:resource/d:titles/d:title"/></td>
+                <td itemprop="name" ><xsl:value-of select="d:resource/d:titles/d:title"/></td>
               </tr>
 
               <tr>
@@ -49,15 +52,29 @@ The d: prefix is then used in the select attributes of the xsl statements
                 <td>
                   <xsl:for-each select="d:resource/d:creators/d:creator">
                     <xsl:if test="d:nameIdentifier">
-                      <xsl:element name="a">
-                        <xsl:attribute name="href">
+                      <xsl:element name="span">
+                        <xsl:attribute name="itemscope"></xsl:attribute>
+                        <xsl:attribute name="itemtype">https://schema.org/Person</xsl:attribute>
+                        <xsl:attribute name="itemprop">author</xsl:attribute>
+                        <xsl:attribute name="itemid">
                           <xsl:value-of select="d:nameIdentifier/@schemeURI"/>/<xsl:value-of select="d:nameIdentifier"/>
                         </xsl:attribute>
-                        <xsl:value-of select="d:creatorName"/>
+                        <xsl:element name="a">
+                          <xsl:attribute name="href">
+                            <xsl:value-of select="d:nameIdentifier/@schemeURI"/>/<xsl:value-of select="d:nameIdentifier"/>
+                          </xsl:attribute>
+                          <span itemprop="name">
+                            <xsl:value-of select="d:creatorName"/>
+                          </span>
+                        </xsl:element>
                       </xsl:element>
                     </xsl:if>
                     <xsl:if test="not(d:nameIdentifier)">
-                      <xsl:value-of select="d:creatorName"/>
+                      <span itemprop="author" itemscope="" itemtype="https://schema.org/Person" >
+                        <span itemprop="name">
+                          <xsl:value-of select="d:creatorName"/>
+                        </span>
+                      </span>
                     </xsl:if>
                     <xsl:if test="not(position()=last())">, </xsl:if>
                     <xsl:if test="position()=last()-1">and </xsl:if>
@@ -67,7 +84,7 @@ The d: prefix is then used in the select attributes of the xsl statements
               </tr>
               <tr>
                 <td>Description</td>
-                <td>
+                <td itemprop="description">
                   <xsl:for-each select="d:resource/d:descriptions/d:description">
                     <xsl:value-of select="."/>
                     <br/>
@@ -80,7 +97,7 @@ The d: prefix is then used in the select attributes of the xsl statements
               </tr>
               <tr>
                 <td>doi</td>
-                <td><xsl:value-of select="d:resource/d:identifier"/></td>
+                <td itemprop="identifier" ><xsl:value-of select="d:resource/d:identifier"/></td>
               </tr>
               <tr>
                 <td>Access constraints</td>
@@ -90,6 +107,7 @@ The d: prefix is then used in the select attributes of the xsl statements
                       <xsl:attribute name="href">
                         <xsl:value-of select="./@rightsURI"/>
                       </xsl:attribute>
+                      <xsl:attribute name="itemprop">license</xsl:attribute>
                       <xsl:value-of select="."/>
                     </xsl:element>
                     <br/>
@@ -178,7 +196,7 @@ The d: prefix is then used in the select attributes of the xsl statements
           </div>
         </div>
 
-      </div>
+      </xsl:element>
     </body>
   </html>
 </xsl:template>
