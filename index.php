@@ -20,7 +20,7 @@
 
 	if( ! isset($_GET['doi'])) { // Produce the list of issued DOIs
 		// URI for all SND.BILS issued DOIs
-		$xml_uri = "https://search.datacite.org/api?q=*&fq=datacentre_facet%3A%22SND.BILS+-+Bioinformatics+Infrastructure+for+Life+Sciences%22&fl=doi,creator,title,publisher,publicationYear,datacentre&fq=is_active:true&fq=has_metadata:true&wt=xml&indent=true";
+		$xml_uri = "https://search.datacite.org/api?q=*&fq=datacentre_facet%3A%22SND.BILS+-+National+Bioinformatics+Infrastructure+Sweden%22&fl=doi,creator,title,publisher,publicationYear,datacentre&fq=is_active:true&fq=has_metadata:true&wt=xml&indent=true";
 
 		// Load XML file
 		$xml = new DOMDocument;
