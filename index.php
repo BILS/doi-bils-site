@@ -96,17 +96,37 @@
 	    // NB! The xsl would also have to be changed for that to work properly
 	    if (isset($ref_element)) {
 		    $ref_doi = trim($ref_element->nodeValue);
-		    // print_r($ref_doi);
 
 			// Fetch the metadata for the reference from crossref.org
-		    $crossref_uri = "http://search.crossref.org/dois?q=" . urlencode($ref_doi);
-		    $ref_json_data = file_get_contents($crossref_uri);
+				$crossref_uri = "https://api.crossref.org/works/" . urlencode($ref_doi);
+		    $ref_json_data = file_get_contents($crossref_uri);				
 		    $ref_data = json_decode($ref_json_data);
+				
+				$year = substr($ref_data->{'message'}->{'created'}->{'date-time'}, 0, 4) ;
+				$title = $ref_data->{'message'}->{'title'}[0];
+				$authors_array = $ref_data->{'message'}->{'author'};
+				$authors_string = "";
+				for ($i = 0; $i < count($authors_array); $i++) {
+					if ($i <> 0) {
+						$authors_string .= ", ";
+					}
+					$a = $authors_array[$i];
+					$given_name = $a->{'given'};
+					$first_initial = substr($given_name, 0, 1);
+					$family_name = $a->{'family'};
+					$authors_string .= $family_name . ", " . $first_initial;				
+				}
+				$ref = $authors_string . ". (" . $year . ") " . $title;
 
-		    $ref =  $ref_data[0]->{'fullCitation'} ;
-		    	// remove any html formating in the output
-		    $ref = preg_replace('/<i>/', '', $ref);
-		    $ref = preg_replace('/<\/i>/', '', $ref);
+				// Old code
+		    // $crossref_uri = "http://search.crossref.org/dois?q=" . urlencode($ref_doi);
+		    // $ref_json_data = file_get_contents($crossref_uri);
+		    // $ref_data = json_decode($ref_json_data);
+				// 
+		    // $ref =  $ref_data[0]->{'fullCitation'} ;
+		    // 	// remove any html formating in the output
+		    // $ref = preg_replace('/<i>/', '', $ref);
+		    // $ref = preg_replace('/<\/i>/', '', $ref);
 
 			// Add appropriate bits to the xml
 		    $full_citation_element = $xml->createElement( "fullCitation", $ref );
