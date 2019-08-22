@@ -94,46 +94,61 @@
 	    // Should possibly be improved to handle more than one relatedIdentifier
 	    // and different types as well.
 	    // NB! The xsl would also have to be changed for that to work properly
+	    
+	    
 	    if (isset($ref_element)) {
-		    $ref_doi = trim($ref_element->nodeValue);
-
-			// Fetch the metadata for the reference from crossref.org
-				$crossref_uri = "https://api.crossref.org/works/" . urlencode($ref_doi);
-		    $ref_json_data = file_get_contents($crossref_uri);				
-		    $ref_data = json_decode($ref_json_data);
-				
-				$year = substr($ref_data->{'message'}->{'created'}->{'date-time'}, 0, 4) ;
-				$title = $ref_data->{'message'}->{'title'}[0];
-				$authors_array = $ref_data->{'message'}->{'author'};
-				$authors_string = "";
-				for ($i = 0; $i < count($authors_array); $i++) {
-					if ($i <> 0) {
-						$authors_string .= ", ";
+				// We only want relatedIdentifier elements that have an attribute
+				// with relationType='IsSupplementTo'
+				$isSupplementTo = false;
+				foreach ($ref_element->attributes as $attr) { 
+          if ($attr->localName == "relationType" && $attr->nodeValue == "IsSupplementTo") {
+						$isSupplementTo = true;
 					}
-					$a = $authors_array[$i];
-					$given_name = $a->{'given'};
-					$first_initial = substr($given_name, 0, 1);
-					$family_name = $a->{'family'};
-					$authors_string .= $family_name . ", " . $first_initial;				
+        } 
+
+				if ($isSupplementTo) {
+					
+			    $ref_doi = trim($ref_element->nodeValue);
+
+				// Fetch the metadata for the reference from crossref.org
+					$crossref_uri = "https://api.crossref.org/works/" . urlencode($ref_doi);
+			    $ref_json_data = file_get_contents($crossref_uri);				
+			    $ref_data = json_decode($ref_json_data);
+					
+					$year = substr($ref_data->{'message'}->{'created'}->{'date-time'}, 0, 4) ;
+					$title = $ref_data->{'message'}->{'title'}[0];
+					$authors_array = $ref_data->{'message'}->{'author'};
+					$authors_string = "";
+					for ($i = 0; $i < count($authors_array); $i++) {
+						if ($i <> 0) {
+							$authors_string .= ", ";
+						}
+						$a = $authors_array[$i];
+						$given_name = $a->{'given'};
+						$first_initial = substr($given_name, 0, 1);
+						$family_name = $a->{'family'};
+						$authors_string .= $family_name . ", " . $first_initial;				
+					}
+					$ref = $authors_string . ". (" . $year . ") " . $title;
+
+					// Old code
+			    // $crossref_uri = "http://search.crossref.org/dois?q=" . urlencode($ref_doi);
+			    // $ref_json_data = file_get_contents($crossref_uri);
+			    // $ref_data = json_decode($ref_json_data);
+					// 
+			    // $ref =  $ref_data[0]->{'fullCitation'} ;
+			    // 	// remove any html formating in the output
+			    // $ref = preg_replace('/<i>/', '', $ref);
+			    // $ref = preg_replace('/<\/i>/', '', $ref);
+
+				// Add appropriate bits to the xml
+			    $full_citation_element = $xml->createElement( "fullCitation", $ref );
+			    $ref_attr = $xml->createAttribute("citation_doi");
+			    $ref_attr->value = $ref_doi;
+			    $full_citation_element->appendChild($ref_attr);
+			    $top_element->appendChild($full_citation_element);
+					
 				}
-				$ref = $authors_string . ". (" . $year . ") " . $title;
-
-				// Old code
-		    // $crossref_uri = "http://search.crossref.org/dois?q=" . urlencode($ref_doi);
-		    // $ref_json_data = file_get_contents($crossref_uri);
-		    // $ref_data = json_decode($ref_json_data);
-				// 
-		    // $ref =  $ref_data[0]->{'fullCitation'} ;
-		    // 	// remove any html formating in the output
-		    // $ref = preg_replace('/<i>/', '', $ref);
-		    // $ref = preg_replace('/<\/i>/', '', $ref);
-
-			// Add appropriate bits to the xml
-		    $full_citation_element = $xml->createElement( "fullCitation", $ref );
-		    $ref_attr = $xml->createAttribute("citation_doi");
-		    $ref_attr->value = $ref_doi;
-		    $full_citation_element->appendChild($ref_attr);
-		    $top_element->appendChild($full_citation_element);
 	    }
 
 		// Set XSLT transform stylesheet file
