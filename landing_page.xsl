@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:d='http://datacite.org/schema/kernel-3' >
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:d='http://datacite.org/schema/kernel-4' >
 <!-- 
 The magic to get it to work is that the datacite namespace (which is declared for the <resource> element in the xml) 
 is assigned to the prefix d (xmlns:d=...) in the declaration above.
